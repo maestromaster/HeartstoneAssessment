@@ -20,34 +20,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center"
-            card_view:cardCornerRadius="15dp"
+            card_view:cardCornerRadius="30dp"
             card_view:cardElevation="4dp"
-            card_view:cardUseCompatPadding="true">
-
-            <ImageView
-                android:id="@+id/favorite_card_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="top|start"
-                android:background="?selectableItemBackgroundBorderless"
-                android:clickable="true"
-                android:focusable="true"
-                android:padding="8dp"
-                android:src="@drawable/ic_star_black_24dp"
-                android:tint="@android:color/darker_gray" />
-
-            <ImageView
-                android:id="@+id/gold_card_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="top|end"
-                android:background="?selectableItemBackgroundBorderless"
-                android:clickable="true"
-                android:focusable="true"
-                android:padding="8dp"
-                android:src="@drawable/ic_gold_card" />
-
-        </android.support.v7.widget.CardView>
+            card_view:cardUseCompatPadding="true" />
 
     </RelativeLayout>
 
@@ -75,78 +50,54 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:adjustViewBounds="true"
-                    android:contentDescription="@string/detailed_image_description"
+                    android:contentDescription="@string/description_users_picture_big"
                     android:maxHeight="@dimen/card_image_big_max_height"
+                    android:src="@drawable/ic_user_large"
                     android:scaleType="fitCenter" />
 
                 <TextView
-                    android:id="@+id/card_name"
-                    style="@style/TextAppearance.AppCompat.Title"
+                    android:id="@+id/full_name"
+                    style="@style/TextAppearance.AppCompat.Large"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="24dp"
-                    android:contentDescription="@string/description_card_name"
-                    android:text="" />
+                    android:layout_marginTop="32dp"
+                    android:contentDescription="@string/description_users_full_name"
+                    android:textColor="@color/colorBrowner"
+                    android:text=""
+                    tools:text="Full name"/>
 
-                <LinearLayout
+                <TextView
+                    android:id="@+id/date_of_birth_text"
+                    style="@style/TextAppearance.AppCompat.Medium"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:orientation="horizontal">
+                    android:contentDescription="@string/description_date_of_birth"
+                    android:gravity="center"
+                    android:textColor="@color/colorBrown"
+                    android:text=""
+                    tools:text="Date of birth"/>
 
-                    <TextView
-                        android:id="@+id/card_set"
-                        style="@style/TextAppearance.AppCompat.Caption"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:contentDescription="@string/description_card_set"
-                        android:gravity="center"
-                        android:layout_weight="1"
-                        android:textColor="@color/colorPrimaryDark"
-                        android:text="" />
-
-                    <TextView
-                        android:id="@+id/card_class"
-                        style="@style/TextAppearance.AppCompat.Caption"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:layout_weight="1"
-                        android:contentDescription="@string/desription_card_class"
-                        android:textColor="@color/colorPrimaryDark"
-                        android:text="" />
-
-                    <TextView
-                        android:id="@+id/card_rarity"
-                        style="@style/TextAppearance.AppCompat.Caption"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:layout_weight="1"
-                        android:contentDescription="@string/description_rarity"
-                        android:textColor="@color/colorPrimaryDark"
-                        android:text="" />
-
-                </LinearLayout>
 
                 <TextView
-                    android:id="@+id/card_text"
-                    style="@style/TextAppearance.AppCompat.Body1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="24dp"
-                    android:contentDescription="@string/description_card_text"
-                    android:text=""/>
+                    android:layout_marginTop="32dp"
+                    style="@style/TextAppearance.AppCompat.Small"
+                    android:textColor="@color/colorAccent"
+                    android:contentDescription="@string/description_date_of_birth"
+                    android:text="@string/issues_label"
+                    android:textAllCaps="true"
+                    tools:text="Issues count"/>
 
                 <TextView
-                    android:id="@+id/card_mechanics"
-                    style="@style/TextAppearance.AppCompat.Body2"
+                    android:id="@+id/issues_count_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="24dp"
-                    android:gravity="center_horizontal"
-                    android:contentDescription="@string/description_card_mechanics"
-                    android:text=""/>
+                    android:textSize="36sp"
+                    android:textColor="@color/colorAccent"
+                    android:contentDescription="@string/description_date_of_birth"
+                    android:text=""
+                    tools:text="Issues count"/>
 
             </LinearLayout>
 
