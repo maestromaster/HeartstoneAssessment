@@ -14,11 +14,11 @@ import dagger.android.ContributesAndroidInjector;
 @Module
 public abstract class FragmentBuildersModule {
     @ContributesAndroidInjector
-    abstract IssuesListFragment contributeCardsGridFragment();
+    abstract IssuesListFragment contributeIssuesListFragment();
 
     @ContributesAndroidInjector
-    abstract IssuesPagerFragment contributeCardsPagerFragment();
+    abstract IssuesPagerFragment contributeIssuesPagerFragment();
 
     @ContributesAndroidInjector
-    abstract IssueFragment contributeCardPageFragment();
+    abstract IssueFragment contributeIssuesPageFragment();
 }

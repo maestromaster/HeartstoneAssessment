@@ -10,7 +10,7 @@ import com.lakhmotkin.rabocsv.repository.model.Issue;
 import java.util.List;
 
 /**
- * Created by Igor Lakhmotkin on 25.02.2018, for HeartstoneAssessment.
+ * Created by Igor Lakhmotkin on 09.04.2018
  */
 
 @Dao

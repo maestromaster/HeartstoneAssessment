@@ -18,8 +18,8 @@ import com.lakhmotkin.rabocsv.repository.model.Issue;
  */
 public class IssueFragment extends Fragment {
 
-    private static final String KEY_CARD = "com.lakhmotkin.rabocsv.card.key.card";
-    private static final String KEY_SELECTED_CARD = "com.lakhmotkin.rabocsv.card.key.selected";
+    private static final String KEY_ISSUE = "com.lakhmotkin.rabocsv.issue.key.issue";
+    private static final String KEY_SELECTED_ISSUE = "com.lakhmotkin.rabocsv.issue.key.selected";
 
     private ImageView mUserPicture;
     private TextView mFullName;
@@ -30,8 +30,8 @@ public class IssueFragment extends Fragment {
     public static IssueFragment newInstance(Issue issue, Boolean selected) {
         IssueFragment fragment = new IssueFragment();
         Bundle argument = new Bundle();
-        argument.putSerializable(KEY_CARD, issue);
-        argument.putBoolean(KEY_SELECTED_CARD, selected);
+        argument.putSerializable(KEY_ISSUE, issue);
+        argument.putBoolean(KEY_SELECTED_ISSUE, selected);
         fragment.setArguments(argument);
         return fragment;
     }
@@ -40,10 +40,10 @@ public class IssueFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        final View view = inflater.inflate(R.layout.fragment_card, container, false);
+        final View view = inflater.inflate(R.layout.fragment_issue, container, false);
         Bundle arguments = getArguments();
-        mIssue = (Issue) arguments.getSerializable(KEY_CARD);
-        Boolean selected = arguments.getBoolean(KEY_SELECTED_CARD);
+        mIssue = (Issue) arguments.getSerializable(KEY_ISSUE);
+        Boolean selected = arguments.getBoolean(KEY_SELECTED_ISSUE);
 
         mFullName = view.findViewById(R.id.full_name);
         mFullName.setText(mIssue.getFullName());
@@ -54,7 +54,7 @@ public class IssueFragment extends Fragment {
         mIssues = view.findViewById(R.id.issues_count_text);
         mIssues.setText(mIssue.getIssueCountString());
 
-        mUserPicture = view.findViewById(R.id.card_image);
+        mUserPicture = view.findViewById(R.id.user_picture);
         mUserPicture.setTransitionName(mIssue.getFirstName());
         if (selected) {
             if (getParentFragment() != null) {

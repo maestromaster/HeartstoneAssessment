@@ -11,25 +11,25 @@ import java.util.List;
 
 public class IssuesPagerAdapter extends FragmentStatePagerAdapter {
 
-    private List<Issue> mCardsList;
+    private List<Issue> mIssuesList;
 
     public IssuesPagerAdapter(Fragment fragment, List<Issue> issues) {
         super(fragment.getChildFragmentManager());
-        mCardsList = issues;
+        mIssuesList = issues;
     }
 
-    public void setCardsList(List<Issue> list){
-        mCardsList = list;
+    public void setIssuesList(List<Issue> list){
+        mIssuesList = list;
     }
 
     @Override
     public int getCount() {
-        return mCardsList.size();
+        return mIssuesList.size();
     }
 
     @Override
     public Fragment getItem(int position) {
         boolean selected = (position == IssuesListActivity.currentPosition);
-        return IssueFragment.newInstance(mCardsList.get(position), selected);
+        return IssueFragment.newInstance(mIssuesList.get(position), selected);
     }
 }

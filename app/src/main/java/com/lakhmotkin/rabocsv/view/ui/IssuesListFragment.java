@@ -8,7 +8,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.SharedElementCallback;
 import android.support.v7.widget.RecyclerView;
 import android.transition.TransitionInflater;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -21,8 +20,8 @@ import android.widget.TextView;
 import com.lakhmotkin.rabocsv.R;
 import com.lakhmotkin.rabocsv.repository.model.Issue;
 import com.lakhmotkin.rabocsv.view.adapter.IssuesGridAdapter;
-import com.lakhmotkin.rabocsv.viewmodel.CardsListViewModel;
-import com.lakhmotkin.rabocsv.viewmodel.CardsListViewModelFactory;
+import com.lakhmotkin.rabocsv.viewmodel.IssuesListViewModel;
+import com.lakhmotkin.rabocsv.viewmodel.IssuesListViewModelFactory;
 
 import java.util.List;
 import java.util.Map;
@@ -36,18 +35,16 @@ import dagger.android.support.AndroidSupportInjection;
  */
 public class IssuesListFragment extends Fragment {
 
-    private static final String TAG = "IssuesListFragment";
-
     @Inject
-    CardsListViewModelFactory cardsModelFactory;
+    IssuesListViewModelFactory issuesModelFactory;
 
-    private RecyclerView mCardsRecyclerView;
+    private RecyclerView mIssuesRecyclerView;
     private IssuesGridAdapter mIssuesGridAdapter;
     private ViewGroup mLoadingContainer;
     private ViewGroup mErrorContainer;
     private TextView mErrorText;
 
-    private CardsListViewModel mViewModel;
+    private IssuesListViewModel mViewModel;
 
     @Nullable
     @Override
@@ -55,16 +52,16 @@ public class IssuesListFragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_grid, container, false);
         setHasOptionsMenu(true);
-        mCardsRecyclerView = (RecyclerView) view.findViewById(R.id.cards_recycler_grid);
+        mIssuesRecyclerView = (RecyclerView) view.findViewById(R.id.issues_recycler_grid);
         mIssuesGridAdapter = new IssuesGridAdapter(this);
-        mCardsRecyclerView.setAdapter(mIssuesGridAdapter);
+        mIssuesRecyclerView.setAdapter(mIssuesGridAdapter);
 
         prepareTransitions();
         postponeEnterTransition();
 
-        mLoadingContainer = view.findViewById(R.id.cards_loading);
-        mErrorContainer = view.findViewById(R.id.cards_error);
-        mErrorText = view.findViewById(R.id.cards_error_text);
+        mLoadingContainer = view.findViewById(R.id.issues_loading);
+        mErrorContainer = view.findViewById(R.id.issues_error);
+        mErrorText = view.findViewById(R.id.issues_error_text);
 
         return view;
     }
@@ -74,10 +71,10 @@ public class IssuesListFragment extends Fragment {
         AndroidSupportInjection.inject(this);
         super.onActivityCreated(savedInstanceState);
 
-        mViewModel = ViewModelProviders.of(this, cardsModelFactory)
-                .get(CardsListViewModel.class);
+        mViewModel = ViewModelProviders.of(this, issuesModelFactory)
+                .get(IssuesListViewModel.class);
         mViewModel.error().observe(this, this::onError);
-        mViewModel.cards().observe(this, this::onCards);
+        mViewModel.issues().observe(this, this::onIssues);
         mViewModel.progress().observe(this, this::onProgress);
         prepare();
     }
@@ -86,9 +83,9 @@ public class IssuesListFragment extends Fragment {
         mViewModel.prepare();
     }
 
-    private void fetchAllCards() {
+    private void fetchAllIssues() {
         mErrorContainer.setVisibility(View.INVISIBLE);
-        mViewModel.fetchAllCards();
+        mViewModel.fetchAllIssues();
     }
 
     private void onProgress(Boolean aBoolean) {
@@ -105,9 +102,8 @@ public class IssuesListFragment extends Fragment {
     }
 
 
-    private void onCards(List<Issue> issues){
-        Log.d(TAG, "onCards: " + issues.size());
-        mIssuesGridAdapter.setCardList(issues);
+    private void onIssues(List<Issue> issues){
+        mIssuesGridAdapter.setIssuesList(issues);
     }
 
     @Override
@@ -126,7 +122,7 @@ public class IssuesListFragment extends Fragment {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_item_all:
-                fetchAllCards();
+                fetchAllIssues();
                 break;
             default:
                 break;
@@ -136,7 +132,7 @@ public class IssuesListFragment extends Fragment {
     }
 
     private void scrollToPosition() {
-        mCardsRecyclerView.addOnLayoutChangeListener(new OnLayoutChangeListener() {
+        mIssuesRecyclerView.addOnLayoutChangeListener(new OnLayoutChangeListener() {
             @Override
             public void onLayoutChange(View v,
                                        int left,
@@ -147,12 +143,12 @@ public class IssuesListFragment extends Fragment {
                                        int oldTop,
                                        int oldRight,
                                        int oldBottom) {
-                mCardsRecyclerView.removeOnLayoutChangeListener(this);
-                final RecyclerView.LayoutManager layoutManager = mCardsRecyclerView.getLayoutManager();
+                mIssuesRecyclerView.removeOnLayoutChangeListener(this);
+                final RecyclerView.LayoutManager layoutManager = mIssuesRecyclerView.getLayoutManager();
                 View viewAtPosition = layoutManager.findViewByPosition(IssuesListActivity.currentPosition);
                 if (viewAtPosition == null || layoutManager
                         .isViewPartiallyVisible(viewAtPosition, false, true)) {
-                    mCardsRecyclerView.post(() -> layoutManager.scrollToPosition(IssuesListActivity.currentPosition));
+                    mIssuesRecyclerView.post(() -> layoutManager.scrollToPosition(IssuesListActivity.currentPosition));
                 }
             }
         });
@@ -166,14 +162,14 @@ public class IssuesListFragment extends Fragment {
                 new SharedElementCallback() {
                     @Override
                     public void onMapSharedElements(List<String> names, Map<String, View> sharedElements) {
-                        RecyclerView.ViewHolder selectedViewHolder = mCardsRecyclerView
+                        RecyclerView.ViewHolder selectedViewHolder = mIssuesRecyclerView
                                 .findViewHolderForAdapterPosition(IssuesListActivity.currentPosition);
                         if (selectedViewHolder == null || selectedViewHolder.itemView == null) {
                             return;
                         }
 
                         sharedElements
-                                .put(names.get(0), selectedViewHolder.itemView.findViewById(R.id.card_image));
+                                .put(names.get(0), selectedViewHolder.itemView.findViewById(R.id.user_picture));
                     }
                 });
     }

@@ -36,7 +36,7 @@ public class IssuesGridAdapter extends RecyclerView.Adapter<IssuesGridAdapter.Im
         this.viewHolderListener = new ViewHolderListenerImpl(fragment);
     }
 
-    public void setCardList(final List<Issue> issues) {
+    public void setIssuesList(final List<Issue> issues) {
         mIssues = issues;
         notifyDataSetChanged();
     }
@@ -44,7 +44,7 @@ public class IssuesGridAdapter extends RecyclerView.Adapter<IssuesGridAdapter.Im
     @Override
     public ImageViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.grid_item_card, parent, false);
+                .inflate(R.layout.grid_item, parent, false);
         return new ImageViewHolder(view, viewHolderListener);
     }
 
@@ -86,7 +86,7 @@ public class IssuesGridAdapter extends RecyclerView.Adapter<IssuesGridAdapter.Im
             if (fragment.getExitTransition() != null) {
                 ((TransitionSet) fragment.getExitTransition()).excludeTarget(view, true);
             }
-            ImageView transitioningView = view.findViewById(R.id.card_image);
+            ImageView transitioningView = view.findViewById(R.id.user_picture);
             fragment.getFragmentManager()
                     .beginTransaction()
                     .setReorderingAllowed(true)
@@ -110,7 +110,7 @@ public class IssuesGridAdapter extends RecyclerView.Adapter<IssuesGridAdapter.Im
         ImageViewHolder(View itemView,
                         ViewHolderListener viewHolderListener) {
             super(itemView);
-            this.image = itemView.findViewById(R.id.card_image);
+            this.image = itemView.findViewById(R.id.user_picture);
             this.name = itemView.findViewById(R.id.full_name);
             this.dateOfBirth = itemView.findViewById(R.id.date_of_birth);
             this.issueCount = itemView.findViewById(R.id.issues_count);

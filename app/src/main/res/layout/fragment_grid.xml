@@ -9,7 +9,7 @@
         android:layout_height="match_parent">
 
         <LinearLayout
-            android:id="@+id/cards_error"
+            android:id="@+id/issues_error"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
@@ -23,7 +23,7 @@
                 android:src="@drawable/ic_error" />
 
             <TextView
-                android:id="@+id/cards_error_text"
+                android:id="@+id/issues_error_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -35,7 +35,7 @@
         </LinearLayout>
 
         <android.support.v7.widget.RecyclerView
-            android:id="@+id/cards_recycler_grid"
+            android:id="@+id/issues_recycler_grid"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:paddingEnd="8dp"
@@ -47,7 +47,7 @@
             app:spanCount="@integer/grid_span_count" />
 
         <LinearLayout
-            android:id="@+id/cards_loading"
+            android:id="@+id/issues_loading"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"

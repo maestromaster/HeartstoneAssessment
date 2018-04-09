@@ -21,7 +21,7 @@
       android:padding="16dp">
 
     <ImageView
-        android:id="@+id/card_image"
+        android:id="@+id/user_picture"
         android:layout_width="56dp"
         android:layout_height="56dp"
         android:contentDescription="@string/description_users_picture"

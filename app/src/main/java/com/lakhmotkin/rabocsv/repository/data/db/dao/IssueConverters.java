@@ -2,18 +2,10 @@ package com.lakhmotkin.rabocsv.repository.data.db.dao;
 
 import android.arch.persistence.room.TypeConverter;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-import com.lakhmotkin.rabocsv.repository.model.Mechanic;
-
-import java.lang.reflect.Type;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 
 /**
- * Created by Igor Lakhmotkin on 25.02.2018, for HeartstoneAssessment.
+ * Created by Igor Lakhmotkin on 09.04.2018
  */
 
 public class IssueConverters {

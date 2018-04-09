@@ -7,16 +7,14 @@ import java.util.List;
 import io.reactivex.Observable;
 
 /**
- * Created by Igor Lakhmotkin on 25.02.2018, for HeartstoneAssessment.
+ * Created by Igor Lakhmotkin on 09.04.2018
  */
 
 public interface DbHelper {
 
-    Observable<List<Issue>> getAllCards();
+    Observable<List<Issue>> getAllIssues();
 
-    Observable<Boolean> saveCardsList(List<Issue> cardsList);
+    Observable<Boolean> saveIssuesList(List<Issue> issuesList);
 
-    Observable<Boolean> deleteAllCards();
-
-    Observable<Boolean> updateCard(Issue issue);
+    Observable<Boolean> deleteAllIssues();
 }

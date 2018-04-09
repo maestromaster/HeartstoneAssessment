@@ -26,7 +26,7 @@ public class IssuesListActivity extends AppCompatActivity implements HasSupportF
     protected void onCreate(Bundle savedInstanceState) {
         AndroidInjection.inject(this);
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cards_grid);
+        setContentView(R.layout.activity_issues_list);
         if (savedInstanceState != null) {
             currentPosition = savedInstanceState.getInt(KEY_CURRENT_POSITION, 0);
             return;

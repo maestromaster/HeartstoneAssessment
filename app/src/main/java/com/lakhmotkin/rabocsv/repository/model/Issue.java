@@ -10,7 +10,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
- * Created by Igor Lakhmotkin on 24.02.2018, for HeartstoneAssessment.
+ * Created by Igor Lakhmotkin on 09.04.2018
  */
 @Entity(
         tableName = "issues"

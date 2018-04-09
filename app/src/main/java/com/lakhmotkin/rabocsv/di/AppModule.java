@@ -8,12 +8,12 @@ import com.lakhmotkin.rabocsv.App;
 import com.lakhmotkin.rabocsv.C;
 import com.lakhmotkin.rabocsv.repository.data.CSVHelper;
 import com.lakhmotkin.rabocsv.repository.data.CSVHelperType;
-import com.lakhmotkin.rabocsv.repository.data.CardsRepository;
-import com.lakhmotkin.rabocsv.repository.data.CardsRepositoryType;
+import com.lakhmotkin.rabocsv.repository.data.IssuesRepository;
+import com.lakhmotkin.rabocsv.repository.data.IssuesRepositoryType;
 import com.lakhmotkin.rabocsv.repository.data.db.AppDatabase;
 import com.lakhmotkin.rabocsv.repository.data.db.AppDbHelper;
 import com.lakhmotkin.rabocsv.repository.data.db.DbHelper;
-import com.lakhmotkin.rabocsv.viewmodel.CardsListViewModelFactory;
+import com.lakhmotkin.rabocsv.viewmodel.IssuesListViewModelFactory;
 
 import javax.inject.Singleton;
 
@@ -52,8 +52,8 @@ public class AppModule {
 
     @Singleton
     @Provides
-    CardsRepositoryType provideCardsRepository(DbHelper dbHelper, CSVHelperType csvHelper) {
-        return new CardsRepository(dbHelper, csvHelper);
+    IssuesRepositoryType provideIssuesRepository(DbHelper dbHelper, CSVHelperType csvHelper) {
+        return new IssuesRepository(dbHelper, csvHelper);
     }
 
     @Singleton
@@ -64,7 +64,7 @@ public class AppModule {
 
     @Singleton
     @Provides
-    CardsListViewModelFactory provideCardsListViewModelFactory(CardsRepositoryType repository) {
-        return new CardsListViewModelFactory(repository);
+    IssuesListViewModelFactory provideIssuesListViewModelFactory(IssuesRepositoryType repository) {
+        return new IssuesListViewModelFactory(repository);
     }
 }

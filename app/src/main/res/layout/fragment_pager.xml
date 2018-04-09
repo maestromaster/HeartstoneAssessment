@@ -6,13 +6,13 @@
     android:background="@android:color/white">
 
     <View
-        android:id="@+id/cards_pager_bg"
+        android:id="@+id/issues_pager_bg"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/colorPrimary" />
 
     <android.support.v4.view.ViewPager
-        android:id="@+id/cards_pager"
+        android:id="@+id/issues_pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="bottom"

@@ -46,7 +46,7 @@
                 android:paddingBottom="24dp">
 
                 <ImageView
-                    android:id="@+id/card_image"
+                    android:id="@+id/user_picture"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:adjustViewBounds="true"

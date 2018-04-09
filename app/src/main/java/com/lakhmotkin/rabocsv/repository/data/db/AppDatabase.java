@@ -9,7 +9,7 @@ import com.lakhmotkin.rabocsv.repository.data.db.dao.IssueDao;
 import com.lakhmotkin.rabocsv.repository.model.Issue;
 
 /**
- * Created by Igor Lakhmotkin on 25.02.2018, for HeartstoneAssessment.
+ * Created by Igor Lakhmotkin on 09.04.2018
  */
 
 @Database(entities = {Issue.class}, version = 5, exportSchema = false)

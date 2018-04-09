@@ -1,7 +1,6 @@
 package com.lakhmotkin.rabocsv.repository.data;
 
 import android.content.Context;
-import android.util.Log;
 
 import com.lakhmotkin.rabocsv.R;
 import com.lakhmotkin.rabocsv.repository.model.Issue;
@@ -21,8 +20,7 @@ import javax.inject.Inject;
 import javax.inject.Singleton;
 
 @Singleton
-public class CSVHelper implements CSVHelperType{
-    private static final String TAG = "CSVHelper";
+public class CSVHelper implements CSVHelperType {
 
     private final BufferedReader mReader;
 
@@ -35,7 +33,6 @@ public class CSVHelper implements CSVHelperType{
 
     @Override
     public List<Issue> loadIssueDataFromCSV() {
-        Log.d(TAG, "loadIssueDataFromCSV: ");
         List<Issue> issues = new ArrayList<>();
         try {
             String line = mReader.readLine();
@@ -46,24 +43,34 @@ public class CSVHelper implements CSVHelperType{
                 issue.setLastName(removeQuotes(tokens[1]));
                 issue.setIssueCount(Integer.valueOf(removeQuotes(tokens[2])));
 
-                SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
-                String dateString = removeQuotes(tokens[3]);
-                Date date = formatter.parse(dateString);
+                Date date = parseDateString(tokens[3]);
                 issue.setDateOfBirth(date);
 
                 issues.add(issue);
             }
-        } catch (IOException | ParseException e1) {
+        } catch (IOException e1) {
             e1.printStackTrace();
         }
         return issues;
     }
 
-    private String removeQuotes(String source){
+    @Override
+    public Date parseDateString(String token) {
+        try {
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+            String dateString = removeQuotes(token);
+            return formatter.parse(dateString);
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    private String removeQuotes(String source) {
         if (source == null || source.isEmpty()) {
             return "";
         } else {
-            return source.replace("\"","");
+            return source.replace("\"", "");
         }
     }
 }
